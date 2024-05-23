@@ -21,8 +21,8 @@ Team Mates:
 
 ***Questions:***
 
-1. What is the link of the fork Net&Sys Assignment in your repository. ***(1 mark)*** **[1](https://github.com/hanifkamal02/NatSysProject)**
-2. How many files and folders are in this repository. ***(1 mark)*** **[2]There are 1 folder and 7 files including 6 files inside the folder.**
+1. What is the link of the fork Net&Sys Assignment in your repository. ***(1 mark)*** **https://github.com/hanifkamal02/NatSysProject**
+2. How many files and folders are in this repository. ***(1 mark)*** **There are 1 folder and 7 files including 6 files inside the folder.**
 
 
 ## Exploring github codespaces
@@ -86,7 +86,7 @@ Look at the TERMINAL tab. Run the following commands and provide the output here
 11. What is the available free memory in the system. ***(1 mark)*** __Fill answer here__.
 12. What is the available disk space mounted on /workspace. ***(1 mark)*** __Fill answer here__.
 13. Name the version and hardware architecture of the linux Virtual environment. ***(1 mark)*** __Fill answer here__.
-14. What is the difference between **ls** vs **ls -asl**. ***(1 mark)*** __Fill answer here__.
+14. What is the difference between **ls** vs **ls -asl**. ***(1 mark)*** **ls is the list name of files and directory in the current directory. ls -asl provide detail listing including hidden files, file sizes and additional information.**
 15. What is the TLB size of the Virtual CPU. ***(1 mark)*** __Fill answer here__.
 16. What is the CPU speed of the Virtual CPU. ***(1 mark)*** __Fill answer here__.
 17. What is the top running process that consumes the most CPU cycles. ***(1 mark)*** __Fill answer here__.
@@ -149,8 +149,8 @@ f65be1987f84   debian    "bash"    19 minutes ago   Exited (137) 18 seconds ago 
 
 ***Questions:***
 
-1. Are files in the container persistent. Why not?. ***(1 mark)*** __Fill answer here__.
-2. Can we run two, or three instances of debian linux? . ***(1 mark)*** __Fill answer here__.
+1. Are files in the container persistent. Why not?. ***(1 mark)*** **The file in the container are not persistent because they are designed to be lightweight and disposable.**
+2. Can we run two, or three instances of debian linux? . ***(1 mark)*** **Yes we can run two or three instances.**
 
 ## Running your own container with persistent storage
 
@@ -223,7 +223,7 @@ docker run -itd --net rednet --name c2 busybox sh
 ```
 ***Questions:***
 
-1. Describe what is busybox and what is command switch **--name** is for? . ***(2 mark)*** __Fill answer here__.
+1. Describe what is busybox and what is command switch **--name** is for? . ***(2 mark)*** **Busybox is a small and single binary that contains many common UNIX utilities. The --name command is for giving a custom name to a container.**
 2. Explore the network using the command ```docker network ls```, show the output of your terminal. ***(1 mark)***
 3. Using ```docker inspect c1``` and ```docker inspect c2``` inscpect the two network. What is the gateway of bluenet and rednet.? ***(1 mark)***
 4. What is the network address for the running container c1 and c2.
