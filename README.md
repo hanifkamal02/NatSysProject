@@ -467,10 +467,41 @@ At the terminal, create a new directory called **myroot**, and run a instance of
 
 @joeynor ➜ /workspaces/OSProject/myroot (main) $ docker run --detach -it -v /workspaces/OSProject/myroot:/root debian
 ```
+```bash
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ mkdir myroot
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ cd myroot
+@hanifkamal02 ➜ /workspaces/NatSysProject/myroot (main) $ pwd
+/workspaces/NatSysProject/myroot
+@hanifkamal02 ➜ /workspaces/NatSysProject/myroot (main) $ docker run --detach -it -v /workspaces/NatSysProject/myroot:/root debian
+4f9cfb8e60386264cd4a2637bc6f9a64b3c427ff306f6e2a13f1f631840df626
+@hanifkamal02 ➜ /workspaces/NatSysProject/myroot (main) $ docker ps
+CONTAINER ID   IMAGE     COMMAND              CREATED          STATUS          PORTS                                   NAMES
+4f9cfb8e6038   debian    "bash"               25 seconds ago   Up 25 seconds                                           distracted_chaum
+57b7c8d91967   busybox   "sh"                 22 minutes ago   Up 22 minutes                                           c2
+c259beda79cc   busybox   "sh"                 22 minutes ago   Up 22 minutes                                           c1
+5c545ba19c21   httpd     "httpd-foreground"   31 minutes ago   Up 31 minutes   0.0.0.0:8080->80/tcp, :::8080->80/tcp   admiring_vaughan
+@hanifkamal02 ➜ /workspaces/NatSysProject/myroot (main) $ docker exec -it distracted_chaum bash
+root@4f9cfb8e6038:/# touch /root/testfile.txt
+root@4f9cfb8e6038:/# echo "Hello World!" > /root/testfile.txt
+root@4f9cfb8e6038:/# exit
+exit
+@hanifkamal02 ➜ /workspaces/NatSysProject/myroot (main) $ ls
+testfile.txt
+@hanifkamal02 ➜ /workspaces/NatSysProject/myroot (main) $ ls -l
+total 4
+-rw-rw-rw- 1 root root 13 May 23 05:29 testfile.txt
+@hanifkamal02 ➜ /workspaces/NatSysProject/myroot (main) $ ls -asl
+total 16
+4 drwxrwxrwx+ 2 codespace codespace 4096 May 23 05:29 .
+4 drwxrwxrwx+ 6 codespace root      4096 May 23 05:25 ..
+4 -rw-------  1 root      root        71 May 23 05:29 .bash_history
+4 -rw-rw-rw-  1 root      root        13 May 23 05:29 testfile.txt
+```
 
 ***Questions:***
 
-1. Check the permission of the files created in myroot, what user and group is the files created in docker container on the host virtual machine? . ***(2 mark)*** __Fill answer here__.
+1. Check the permission of the files created in myroot, what user and group is the files created in docker container on the host virtual machine? . ***(2 mark)*** <br>
+**The permission of the folder /workspaces/NetSysProject is -rw-rw-rw, and it is owned by the user root and the group root.
 2. Can you change the permission of the files to user codespace.  You will need this to be able to commit and get points for this question. ***(2 mark)***
 ```bash
 //use sudo and chown
@@ -501,8 +532,8 @@ docker run --detach -v /workspaces/OSProject/webpage:/usr/local/apache2/htdocs/ 
 
  <img src="./images/helloworldweb.png" width="70%">
 
- ```bash
- @hanifkamal02 ➜ /workspaces/NatSysProject (main) $ mkdir webpage
+```bash
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ mkdir webpage
 @hanifkamal02 ➜ /workspaces/NatSysProject (main) $ cd webpage
 @hanifkamal02 ➜ /workspaces/NatSysProject/webpage (main) $ echo '<!DOCTYPE html>
 > <html>
@@ -588,7 +619,8 @@ c259beda79cc4f41ef8259ccf7f1de2cb667c5f394347c25170a804f9a3a6f0b
 
 ***Questions:***
 
-1. Describe what is busybox and what is command switch **--name** is for? . ***(2 mark)*** <br>**Busybox is a small and single binary that contains many common UNIX utilities. The --name command is for giving a custom name to a container.**
+1. Describe what is busybox and what is command switch **--name** is for? . ***(2 mark)*** <br>
+**Busybox is a small and single binary that contains many common UNIX utilities. The --name command is for giving a custom name to a container.**
 2. Explore the network using the command ```docker network ls```, show the output of your terminal. ***(1 mark)***
 ```bash
 @hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker network ls
@@ -621,8 +653,7 @@ docker exec c1 ping c2
 ```
 
 ```bash
-@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker network create bridgene
-t
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker network create bridgenet
 d3772d6fd930c362abeb4278ddfbbb18cf1f3d0c95aa231ee4b66b795d892cf4
 @hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker network connect bridgenet c1
 @hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker network connect bridgenet c2
