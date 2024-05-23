@@ -1,11 +1,10 @@
 # Net&Sys Assignment: Running Containers for Application Development
 
-Group Name: __Fill your team name__. 
+Group Name: **Axia Type-R** 
 
 Team Mates:
-1. __Fill name__ and __matric no__
-2. __Fill name__ and __matric no__
-3. __Fill name__ and __matric no__
+1. **Muhammad Hanif Bin Md Kamal 2114963**
+2. **Muhammad Fikri Bin Mohammad Isa 2110105**
 
 ## Rules
 1. You are allowed to have **3 group** members.
@@ -22,8 +21,8 @@ Team Mates:
 
 ***Questions:***
 
-1. What is the link of the fork Net&Sys Assignment in your repository. ***(1 mark)*** __Fill answer here__.
-2. How many files and folders are in this repository. ***(1 mark)*** __Fill answer here__.
+1. What is the link of the fork Net&Sys Assignment in your repository. ***(1 mark)*** **[1](https://github.com/hanifkamal02/NatSysProject)**
+2. How many files and folders are in this repository. ***(1 mark)*** **[2]There are 1 folder and 7 files including 6 files inside the folder.**
 
 
 ## Exploring github codespaces
@@ -55,9 +54,9 @@ Team Mates:
 
 ***Questions:***
 
-1. What is default OS used to run the virtual environment for codespaces. ***(1 mark)*** __Fill answer here__.
-2. What are the two options of RAM, disk and vcpu configuration you can have in running codespaces . ***(1 mark)*** __Fill answer here__.
-3. Why must we commit and sync our current work on source control? ***(1 mark)*** __Fill answer here__.
+1. What is default OS used to run the virtual environment for codespaces. ***(1 mark)*** **Windows OS.**
+2. What are the two options of RAM, disk and vcpu configuration you can have in running codespaces . ***(1 mark)*** **Basic configuration for light use and advanced configuration for heavy use.**
+3. Why must we commit and sync our current work on source control? ***(1 mark)*** **For satefy reason by creating a backup for the work and making collaboration to allow others to see changes.**
 
 ## Exploring the Terminal
 
