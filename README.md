@@ -361,7 +361,91 @@ f65be1987f84   debian    "bash"    19 minutes ago   Exited (137) 18 seconds ago 
 
 @joeynor ➜ /workspaces/OSProject (main) $ docker rm romantic_jackson
 ```
-
+Terminal <br>
+```bash
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker pull debian
+Using default tag: latest
+latest: Pulling from library/debian
+c6cf28de8a06: Pull complete 
+Digest: sha256:fac2c0fd33e88dfd3bc88a872cfb78dcb167e74af6162d31724df69e482f886c
+Status: Downloaded newer image for debian:latest
+docker.io/library/debian:latest
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker run --detach -it debian
+4f627c83e888c9a9bfe8ad7820548f0c07247c0be35d816c2406cd97f964bacf
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMES
+4f627c83e888   debian    "bash"    12 seconds ago   Up 10 seconds             laughing_cray
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker exec -i -t laughing_cray /bin/bash
+root@4f627c83e888:/# apt-get update
+Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [48.0 kB]
+Get:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8786 kB]
+Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [13.8 kB]
+Get:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [156 kB]
+Fetched 9210 kB in 1s (9487 kB/s)
+Reading package lists... Done
+root@4f627c83e888:/# apt-get install nano
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  libgpm2 libncursesw6
+Suggested packages:
+  gpm hunspell
+The following NEW packages will be installed:
+  libgpm2 libncursesw6 nano
+0 upgraded, 3 newly installed, 0 to remove and 0 not upgraded.
+Need to get 837 kB of archives.
+After this operation, 3339 kB of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+Get:1 http://deb.debian.org/debian bookworm/main amd64 libncursesw6 amd64 6.4-4 [134 kB]
+Get:2 http://deb.debian.org/debian bookworm/main amd64 nano amd64 7.2-1 [689 kB]
+Get:3 http://deb.debian.org/debian bookworm/main amd64 libgpm2 amd64 1.20.7-10+b1 [14.2 kB]
+Fetched 837 kB in 0s (28.4 MB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package libncursesw6:amd64.
+(Reading database ... 6090 files and directories currently installed.)
+Preparing to unpack .../libncursesw6_6.4-4_amd64.deb ...
+Unpacking libncursesw6:amd64 (6.4-4) ...
+Selecting previously unselected package nano.
+Preparing to unpack .../archives/nano_7.2-1_amd64.deb ...
+Unpacking nano (7.2-1) ...
+Selecting previously unselected package libgpm2:amd64.
+Preparing to unpack .../libgpm2_1.20.7-10+b1_amd64.deb ...
+Unpacking libgpm2:amd64 (1.20.7-10+b1) ...
+Setting up libgpm2:amd64 (1.20.7-10+b1) ...
+Setting up libncursesw6:amd64 (6.4-4) ...
+Setting up nano (7.2-1) ...
+update-alternatives: using /bin/nano to provide /usr/bin/editor (editor) in auto mode
+update-alternatives: using /bin/nano to provide /usr/bin/pico (pico) in auto mode
+Processing triggers for libc-bin (2.36-9+deb12u7) ...
+root@4f627c83e888:/# cd /root
+root@4f627c83e888:~# nano helloworld.txt
+root@4f627c83e888:~# exit
+exit
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker stop laughing_cray
+laughing_cray
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS                       PORTS     NAMES
+4f627c83e888   debian    "bash"    2 minutes ago   Exited (137) 7 seconds ago             laughing_cray
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker restart laughing_cray
+laughing_cray
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS          PORTS     NAMES
+4f627c83e888   debian    "bash"    3 minutes ago   Up 13 seconds             laughing_cray
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker stop laughing_cray
+laughing_cray
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS                       PORTS     NAMES
+4f627c83e888   debian    "bash"    3 minutes ago   Exited (137) 7 seconds ago             laughing_cray
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker rm laughing_cray
+laughing_cray
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker exec -i -t laughing_cray /bin/bash
+Error response from daemon: No such container: laughing_cray
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+```
 ***Questions:***
 
 1. Are files in the container persistent. Why not?. ***(1 mark)*** <br>**The file in the container are not persistent because they are designed to be lightweight and disposable.**
