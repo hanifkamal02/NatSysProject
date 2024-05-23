@@ -508,7 +508,19 @@ total 16
 sudo chown -R codespace:codespace myroot
 
 ```
-*** __Fill answer here__.***
+```bash
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ ls -l
+total 48
+-rw-rw-rw-  1 codespace root      33368 May 23 05:50 README.md
+drwxrwxrwx+ 2 codespace root       4096 May 23 00:47 images
+drwxrwxrwx+ 3 root      root       4096 May 23 06:04 myroot
+drwxrwxrwx+ 2 codespace codespace  4096 May 23 04:50 webpage
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ sudo chown -R codespace:codespace myroot
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ cd myroot
+@hanifkamal02 ➜ /workspaces/NatSysProject/myroot (main) $ ls -l
+total 4
+-rw-rw-rw- 1 codespace codespace 13 May 23 05:29 testfile.txt
+```
 
 ## You are on your own, create your own static webpage
 
