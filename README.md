@@ -448,8 +448,10 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
 ***Questions:***
 
-1. Are files in the container persistent. Why not?. ***(1 mark)*** <br>**The file in the container are not persistent because they are designed to be lightweight and disposable.**
-2. Can we run two, or three instances of debian linux? . ***(1 mark)*** <br>**Yes we can run two or three instances.**
+1. Are files in the container persistent. Why not?. ***(1 mark)*** <br>
+**The file in the container are not persistent because they are designed to be lightweight and disposable.**
+2. Can we run two, or three instances of debian linux? . ***(1 mark)*** <br>
+**Yes we can run two or three instances.**
 
 ## Running your own container with persistent storage
 
@@ -499,11 +501,58 @@ docker run --detach -v /workspaces/OSProject/webpage:/usr/local/apache2/htdocs/ 
 
  <img src="./images/helloworldweb.png" width="70%">
 
+ ```bash
+ @hanifkamal02 ➜ /workspaces/NatSysProject (main) $ mkdir webpage
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ cd webpage
+@hanifkamal02 ➜ /workspaces/NatSysProject/webpage (main) $ echo '<!DOCTYPE html>
+> <html>
+> <head>
+>     <title>My Static Webpage</title>
+> </head>
+> <body>
+>     <h1>Welcome to My Static Webpage</h1>
+>     <p>This is a simple static webpage served by Apache.</p>
+> </body>
+> </html>'
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Static Webpage</title>
+</head>
+<body>
+    <h1>Welcome to My Static Webpage</h1>
+    <p>This is a simple static webpage served by Apache.</p>
+</body>
+</html>
+@hanifkamal02 ➜ /workspaces/NatSysProject/webpage (main) $ pwd
+/workspaces/NatSysProject/webpage
+@hanifkamal02 ➜ /workspaces/NatSysProject/webpage (main) $ docker run --detach -v $(pwd):/usr/local/apache2/hdocs/ -p 8080:80 httpd
+Unable to find image 'httpd:latest' locally
+latest: Pulling from library/httpd
+09f376ebb190: Pull complete 
+dab55b4abfc3: Pull complete 
+4f4fb700ef54: Pull complete 
+1a6d0283f224: Pull complete 
+1abf9110528c: Pull complete 
+7bacb8f85f3a: Pull complete 
+Digest: sha256:43c7661a3243c04b0955c81ac994ea13a1d8a1e53c15023a7b3cd5e8bb25de3c
+Status: Downloaded newer image for httpd:latest
+5c545ba19c214ce9be320d645c6f4a8b9d477bd96e90732a1cf195a44a1c7f42
+@hanifkamal02 ➜ /workspaces/NatSysProject/webpage (main) $ docker ps
+CONTAINER ID   IMAGE     COMMAND              CREATED              STATUS              PORTS                                   NAMES
+5c545ba19c21   httpd     "httpd-foreground"   About a minute ago   Up About a minute   0.0.0.0:8080->80/tcp, :::8080->80/tcp   admiring_vaughan
+@hanifkamal02 ➜ /workspaces/NatSysProject/webpage (main) $ docker run --rm -it httpd bash -c "ls -ld /usr/local/apache2/htdocs"
+drwxr-xr-x 2 root root 4096 May 14 02:57 /usr/local/apache2/htdocs
+```
+
 ***Questions:***
 
-1. What is the permission of folder /usr/local/apache/htdocs and what user and group owns the folder? . ***(2 mark)*** __Fill answer here__.
-2. What port is the apache web server running. ***(1 mark)***
-3. What port is open for http protocol on the host machine? ***(1 mark)***
+1. What is the permission of folder /usr/local/apache/htdocs and what user and group owns the folder? . ***(2 mark)*** <br>
+**The permission of the folder /usr/local/apache2/htdocs is drwxr-xr-x, and it is owned by the user root and the group root.**
+2. What port is the apache web server running. ***(1 mark)*** <br>
+**Port 80**
+3. What port is open for http protocol on the host machine? ***(1 mark)*** <br>
+**Port 8080**
 
 ## Create SUB Networks
 
@@ -520,13 +569,47 @@ docker network create rednet`
 docker run -itd --net bluenet --name c1 busybox sh
 docker run -itd --net rednet --name c2 busybox sh
 ```
+
+```bash
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker network create bluenet
+47376be53a7f151a1fbf25303798fff57533b2aa6e417378034fed15c642dcdd
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker network create rednet
+d0c2c80183ad52c663f4df6bdb100c626eb12f1fd67bb98966c02bc9cf29c528
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker run -itd --net bluenet --name c1 busybox sh
+Unable to find image 'busybox:latest' locally
+latest: Pulling from library/busybox
+ec562eabd705: Pull complete 
+Digest: sha256:5eef5ed34e1e1ff0a4ae850395cbf665c4de6b4b83a32a0bc7bcb998e24e7bbb
+Status: Downloaded newer image for busybox:latest
+c259beda79cc4f41ef8259ccf7f1de2cb667c5f394347c25170a804f9a3a6f0b
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker run -itd --net rednet --name c2 busybox sh
+57b7c8d919675f2b418c4ebc5b372f0386b1295242007631437f027ce799b9d4
+```
+
 ***Questions:***
 
 1. Describe what is busybox and what is command switch **--name** is for? . ***(2 mark)*** <br>**Busybox is a small and single binary that contains many common UNIX utilities. The --name command is for giving a custom name to a container.**
 2. Explore the network using the command ```docker network ls```, show the output of your terminal. ***(1 mark)***
-3. Using ```docker inspect c1``` and ```docker inspect c2``` inscpect the two network. What is the gateway of bluenet and rednet.? ***(1 mark)***
-4. What is the network address for the running container c1 and c2.
+```bash
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+47376be53a7f   bluenet   bridge    local
+fd5e7087adb5   bridge    bridge    local
+ea01c4b4bdc6   host      host      local
+a113296f7117   none      null      local
+d0c2c80183ad   rednet    bridge    local
+```
+3. Using ```docker inspect c1``` and ```docker inspect c2``` inscpect the two network. What is the gateway of bluenet and rednet.? ***(1 mark)*** <br>
+**Bluenet Gateway = 172.18.0.1 <br>
+  Rednet Gateway  = 192.19.0.1**
+4. What is the network address for the running container c1 and c2. <br>
+**c1 Network Address = 172.18.0.2 <br>
+  c2 Network Address = 192.19.0.2**
 5. Using the command ```docker exec c1 ping c2```, which basically issue a ping from container c1 to c2. Are you able to ping? Show your output . ***(1 mark)***
+```bash
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker exec c1 ping c2
+ping: bad address 'c2'
+```
 
 ## Bridging two SUB Networks
 1. Let's try this again by creating a network to bridge the two containers in the two subnetworks
@@ -535,6 +618,21 @@ docker network create bridgenet
 docker network connect bridgenet c1
 docker network connect bridgenet c2
 docker exec c1 ping c2
+```
+
+```bash
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker network create bridgene
+t
+d3772d6fd930c362abeb4278ddfbbb18cf1f3d0c95aa231ee4b66b795d892cf4
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker network connect bridgenet c1
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker network connect bridgenet c2
+@hanifkamal02 ➜ /workspaces/NatSysProject (main) $ docker exec c1 ping c2
+PING c2 (172.20.0.3): 56 data bytes
+64 bytes from 172.20.0.3: seq=0 ttl=64 time=0.148 ms
+64 bytes from 172.20.0.3: seq=1 ttl=64 time=0.076 ms
+64 bytes from 172.20.0.3: seq=2 ttl=64 time=0.099 ms
+64 bytes from 172.20.0.3: seq=3 ttl=64 time=0.069 ms
+64 bytes from 172.20.0.3: seq=4 ttl=64 time=0.078 ms
 ```
 
 ## What to submit
