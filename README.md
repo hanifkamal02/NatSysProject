@@ -449,9 +449,9 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ***Questions:***
 
 1. Are files in the container persistent. Why not?. ***(1 mark)*** <br>
-**The file in the container are not persistent because they are designed to be lightweight and disposable.**
+**No, files in a Docker container are not persistent by default because the container's filesystem is ephemeral. This means that any changes made inside the container are lost when the container is stopped and removed.**
 2. Can we run two, or three instances of debian linux? . ***(1 mark)*** <br>
-**Yes we can run two or three instances.**
+**Yes, you can run multiple instances of Debian Linux containers simultaneously using Docker. Each container runs independently and can be configured to have its own environment.**
 
 ## Running your own container with persistent storage
 
